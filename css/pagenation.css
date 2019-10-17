@@ -1,0 +1,30 @@
+/*ページネーション*/
+.pagenation {
+  margin: 0 auto;
+}
+.pagenation ul {
+  list-style: none;
+  display:flex;
+  justify-content: center;
+}
+.pagenation ul li {
+  text-align: center;
+  border: 1px solid #F79468;
+  color: #F79468;
+  margin: 0 10px;
+  width : 35px;
+  line-height: 35px;
+  border-radius: 17.5px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.pagenation ul li.active {
+  color: #fff;
+  background: #F79468;
+}
+.pagenation ul li a {
+  text-decoration: none;
+  color: #F79468;
+  display: block;
+  border-radius: 17.5px;
+}

@@ -1,0 +1,141 @@
+#main {
+  line-height: 1.5em;
+}
+.slide-container {
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+#top-banar {
+  max-width: 100%;
+  height: auto;
+  position: absolute;
+  top: -300px;
+}
+/*メインコンテンツ*/
+.panel-bg-color {
+  background: rgba(177,177,177,0.15);
+}
+.link-box {
+  margin:auto auto 20px;
+}
+/*recommendセクション*/
+#recommend {
+  padding: 50px 0 20px;
+}
+.section-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -15px;
+}
+.section-content-position {
+  margin: 0 auto;
+}
+.panel {
+  flex-basis:25%;
+}
+.panel h3 {
+  padding: 0 25px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+.panel p {
+  color: #676b6d;
+  padding: 0px 25px;
+  font-size: 14px;
+  text-align: left;
+}
+.panel a {
+  color: #fff;
+  background: #dd8118;
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 6px 12px;
+  display: inline-block;
+}
+.panel-content-wrapper {
+  padding: 0 15px;
+}
+.panel-content-wrapper {
+  text-align: center;
+}
+.panel-content-wrapper.title-panel h2{
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: solid 2px #555555;
+  display: inline-block;
+  margin: 20px 10px 10px;
+}
+.panel-image {
+  width: 100%;
+}
+
+/*meritセクション*/
+#merit {
+  background: rgba(160, 160, 160, 0.16);
+  padding: 35px 0 20px;
+}
+.panel-content-wrapper.item-panel h2{
+  position: relative;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  display: inline-block;
+  margin: 20px 0 10px;
+}
+.panel-content-wrapper.item-panel h2.merit-item-title {
+  align-self: flex-start;
+  padding-left:1.1em;
+}
+.merit-item-title:before{
+  font-family: "Font Awesome 5 Free";
+  content: "\f00c";
+  position: absolute;
+  top: 50%;
+  left:0px;
+  margin-top: -12px;
+}
+/*voiceセクション*/
+#voice {
+  padding: 35px 0 20px;
+}
+.check {
+  display: inline-block;
+  vertical-align: middle;
+}
+.panel-content-wrapper.item-panel h2.voice-item-title {
+  text-align: left;
+  padding-left:1.5em;
+}
+.panel-bg-color.item-panel {
+  height: 360px;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+}
+.voice-item-title:before{
+  font-size: 30px;
+  color: #dd8118;
+  font-family: "Font Awesome 5 Free";
+  content: "\f2bd";
+  position: absolute;
+  top: 50%;
+  left:0px;
+  margin-top: -12px;
+}
+.sentense-container {
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.recommend-sentense {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.voice-sentense {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+}

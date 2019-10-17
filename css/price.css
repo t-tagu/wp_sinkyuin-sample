@@ -1,0 +1,65 @@
+.treatment-manner {
+  padding-bottom: 60px;
+}
+.section-content-wrapper {
+  text-align: center;
+}
+.section-content-wrapper h3{
+  color: #262b2e;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  line-height: 120px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.section-content-wrapper p{
+  font-family: 'Open Sans', sans-serif;
+  margin: auto;
+  text-align: left;
+  line-height: 1.8;
+  width : 60%;
+  font-size: 16px;
+}
+/*料金表*/
+.price {
+  background: rgba(160, 160, 160, 0.16);
+  padding-bottom: 60px;
+}
+.price-table-wrapper {
+  width: 60%;
+  margin: auto;
+}
+.price-table-wrapper table {
+  border:1px solid #D7C091;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.price-table-wrapper table tr{
+  width: 100%;
+}
+.price-table-wrapper table tbody tr th {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  width: 50%;
+  padding: 10px;
+  text-align: center;
+  vertical-align: top;
+  background: #E9D7A6;
+  border:1px solid #D7C091;
+  font-weight: 600;
+}
+.price-table-wrapper table tbody tr td{
+  font-family: 'Open Sans', sans-serif;
+  border-collapse: collapse;
+  border:1px solid #D7C091;
+  padding: 10px;
+  font-size: 16px;
+}
+.price-table-wrapper table tbody tr td.plan{
+  background: rgba(233, 215, 166, 0.4);
+}
+.footer-container {
+  border-top: 1px solid rgba(103,107,109,0.15);
+}

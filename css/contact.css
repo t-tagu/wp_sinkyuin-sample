@@ -1,0 +1,117 @@
+/*telセクション*/
+.tel {
+  padding-bottom: 60px;
+}
+.section-content-wrapper {
+  text-align: center;
+}
+.section-content-wrapper h3{
+  color: #262b2e;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  line-height: 120px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.consultation {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+.tel-box {
+  font-size: 40px;
+  padding: 30px;
+  background: #E9D7A6;
+  display: inline-block;
+  margin: 15px 0 10px;
+  border-radius: 3px;
+}
+.tel-box a {
+  font-family: 'Open Sans', sans-serif;
+  color: #dd8118;
+  text-decoration: none;
+  line-height: 1;
+  font-weight: 600;
+}
+.tel-icon {
+  display: inline-block;
+  margin-right: 10px;
+}
+.tel-time {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: -11px;
+  margin-top: 5px;
+}
+.hosoku {
+  line-height: 1.8;
+  color: #333;
+  font-size: 13px;
+}
+/*フォームセクション*/
+.email-form {
+  background: rgba(160, 160, 160, 0.16);
+  padding-bottom: 60px;
+}
+.contact-form-wrapper {
+  width: 60%;
+  margin: auto;
+}
+.contact-form-wrapper form table {
+  border:1px solid #D7C091;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 28px;
+}
+.contact-form-wrapper form table tr{
+  width: 100%;
+}
+.contact-form-wrapper form table tbody tr th {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  width: 25%;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+  background: #E9D7A6;
+  border:1px solid #D7C091;
+  font-weight: 600;
+}
+.contact-form-wrapper form table tbody tr td{
+  border-collapse: collapse;
+  border:1px solid #D7C091;
+  padding: 10px;
+  /*line-height: 1.8px;*/
+}
+.contact-form-wrapper table tr td input[type=text] {
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 1px;
+}
+.contact-form-wrapper table tr td textarea {
+    width: 100%;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 2px;
+    height: 150px !important;
+    border-color: #ddd;
+}
+.contact-form-wrapper input[type=submit] {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    background: #dd8118;
+    color: #fff;
+    padding: 10px 80px;
+    border: none;
+    border-radius: 3px;
+}
+.contact-form-wrapper input[type=submit]:hover {
+    cursor: pointer;
+}
+.footer-container {
+  border-top: 1px solid rgba(103,107,109,0.15);
+}

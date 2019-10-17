@@ -1,0 +1,60 @@
+.section-content-wrapper h3{
+  color: #262b2e;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  line-height: 120px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.order {
+  font-family: 'Open Sans', sans-serif;
+  background: #dd8118;
+  font-size: 24px;
+  color: #fff;
+  height: 60px;
+  width: 60px;
+  line-height: 60px;
+  text-align: center;
+  border-radius: 30px;
+  position: absolute;
+  z-index: 2;
+}
+.section-content-wrapper h4{
+  color: #262b2e;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+.section-content-wrapper .text-container{
+  font-family: 'Open Sans', sans-serif;
+  text-align: left;
+  line-height: 22px;
+  font-size: 14px;
+}
+.section-content-wrapper .text-container p{
+  margin-bottom: 10px;
+}
+.list-box {
+  margin: 0 auto;
+  width: 50%;
+}
+.procedure-item {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+.description-container {
+  padding-left: 25px;
+  margin-left: 60px;
+}
+.item_connector {
+  position: absolute;
+  height: 100%;
+  top: 30px;
+  left: 30px;
+  border-right: 1px dashed #333333;
+  z-index: 1;
+}

@@ -1,0 +1,29 @@
+#main {
+  padding-bottom: 50px;
+}
+.section-content-wrapper {
+  padding-top: 50px;
+}
+.section-content-wrapper {
+  text-align: left;
+}
+.section-content-wrapper h3{
+  color: #676b6d;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  margin-bottom: 10px;
+}
+.info-sentense-container {
+  margin-bottom: 35px;
+}
+.info-sentense-container p {
+  font-size: 16px;
+  line-height: 2;
+  color: #676b6d;
+  margin-bottom: 10px;
+}
+.map-wrapper {
+  margin-bottom: 35px;
+}
