@@ -66,12 +66,27 @@
 .blog-article h3 a {
   text-decoration: none;
 }
+.sentense-box {
+  overflow: hidden;
+}
 .article-text {
   margin-top: 10px;
   font-size: 12px;
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
-
+.text-wrapper .continue-box {
+  text-align: right;
+}
+.text-wrapper .continue {
+  text-decoration: none;
+  font-size: 12px;
+}
+.text-wrapper .continue:hover {
+  text-decoration: underline;
+}
 /*ページネーション*/
 /*.pagenation {
   margin: 0 auto;

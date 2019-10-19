@@ -6,9 +6,9 @@
   <div class="branding">
     <div class="branding-content site-width">
       <!-- echo home_url();でトップページのurlを取得できる -->
-      <h1><a href="<?php echo home_url();?>">空想鍼灸院<p class="eng-title">Kuso Acupuncture & moxibustion Clinic</p></a></h1>
+      <h1><a href="<?php echo home_url('top');?>">空想鍼灸院<p class="eng-title">Kuso Acupuncture & moxibustion Clinic</p></a></h1>
       <div class="info">
-        <span>〒163-8001 東京都新宿区西新宿2-8-1　<a href="tel"><?php echo get_post_meta($post->ID, 'tel-number', true);?></a></span>
+        <span><?php echo get_post_meta($post->ID, 'address', true);?> <a href="tel"><?php echo get_post_meta($post->ID, 'tel-number', true);?></a></span>
       </div>
     </div>
   </div>

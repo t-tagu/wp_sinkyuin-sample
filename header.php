@@ -23,7 +23,7 @@
       <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/access.css" type="text/css" />
     <?php elseif(is_page_template('contact.php')): ?>
       <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/contact.css" type="text/css" />
-    <?php elseif(is_category()): ?>
+    <?php elseif(is_category() || is_archive()): ?>
       <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/blog.css" type="text/css" />
       <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/sidebar.css" type="text/css" />
       <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/pagenation.css" type="text/css" />

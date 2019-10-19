@@ -8,9 +8,9 @@
             <div class="img-trim">
               <!--サムネイルを表示-->
               <?php if(has_post_thumbnail()): ?>
-                <?php the_post_thumbnail('medium');?>
+                <?php the_post_thumbnail();?>
               <?php else: ?>
-                <img src="<?php echo get_template_directory_uri();?>/img/photo1.jpeg" class="article-img">
+                <img src="<?php echo get_template_directory_uri();?>/img/book.png" class="article-img">
               <?php endif; ?>
             </div>
           </a>
@@ -20,14 +20,21 @@
             <h3><a href=""><?php the_title(); ?></a></h3>
             <time><?php the_time("Y.m.j");?></time>
             <p class="category">
-              <a href=""><?php single_cat_title('');?></a>
+              <?php the_category('<span></span>');?><!-- <span></span>を入れるとカテゴリーの文字リンクのみを表示してくれる-->
             </p>
-            <p class="article-text"><?php the_content();?><a href="<?php the_permalink(); ?>">...続きを読む</a></p>
+            <div class="sentense-box">
+              <p class="article-text">
+                <?php $content  = get_the_content();
+                      echo $text = strip_tags(strip_shortcodes($content));?>
+              </p>
+            </div>
+            <div class="continue-box">
+              <a class="continue" href="<?php the_permalink(); ?>">続きを読む</a>
+            </div>
           </div>
         </div>
       </div>
     </article>
   </div>
 <?php endwhile; //end while have_post ?>
-
 <?php endif; //end have_post ?>

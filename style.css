@@ -97,6 +97,7 @@ footer {
   justify-content:space-between;
   align-items: center;
   padding: 1px 0 1px;
+  border-top: 1px solid rgba(103,107,109,0.15);
 }
 .copyright-container {
   color: #676b6d;

@@ -20,6 +20,47 @@ ini_set('error_log','php.log');
 //カスタムメニューを使用するための設定
 //register_nav_menu('mainmenu', '鍼灸院メニュー'); //メニューの位置の管理から表示するメニューを指定
 
+//サムネイル設定
+function twpp_setup_theme() {
+  add_theme_support( 'post-thumbnails' );
+  set_post_thumbnail_size(250,130,false );
+}
+add_action('after_setup_theme', 'twpp_setup_theme' );
+
+//ページネーション $pagesはブログ記事一覧の全ページ数の引数
+function pagination($pages='', $range=2){
+
+  $showitems = ($range*2)+1; //表示するページネーションの数
+
+  global $paged; //現在のページ
+  if(empty($paged)) $paged = 1; //デフォルトのページ
+
+  if($pages == ''){
+    global $wp_query;
+    $pages = $wp_query->max_num_pages; //全ページ数を取得する
+    if(!$pages){
+      $pages = 1;
+    }
+  }
+
+  if($pages != 1) { //全ページ数が1じゃない場合はページネーションを表示
+    echo "<div class=\"pagenation\">\n"; //"はそのままだと表示できないので、＼を前につけている
+    echo "<ul>\n";
+    //Prev : 現在のページ値が１より大きい場合は表示
+    //if($paged > 1) echo "<li class=\"prev\"><a href='".get_pagenum_link($paged-1)."'>Prev</a></li>\n";
+    for($i=1; $i <= $pages; $i++){
+      if($pages!=1 &&(!($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showtimes)){
+        //三項演算子での条件分岐
+        echo ($paged == $i)? "<li class=\"active\">".$i."</li>\n" :
+         "<li><a href='".get_pagenum_link($i)."'>".$i."</a></li>\n";
+      }
+    }
+    //Next: 総ページ数より現在のページ値が小さい場合は表示
+    //if($paged < $pages) echo "<li class=\"next\"><a href=\"".get_pagenum_link($paged+1)."\">Next</a></li>\n";
+    echo "</ul>\n";
+    echo "</div>\n";
+  }
+}
 
 /*=====================
 カスタムフィールド
@@ -37,11 +78,12 @@ function add_custom_inputbox(){ //これから作るカスタムフィールド�
   //第四引数: 管理画面に表示するカスタムフィールドの場所(postなら投稿、pageなら固定ページ)
   //第五引数: 配置される順序
   add_meta_box('top_img_id','トップバナー画像URL入力欄','custom_topbanar','page','normal');
-  add_meta_box('top_description_id','施術の流れ','top_description','page','normal');
+  add_meta_box('tel_number_id','電話番号入力欄','tel_number','page','normal');
+  add_meta_box('address_id','住所入力欄','address','page','normal');
+  add_meta_box('top_description_id','トップページ説明','top_description','page','normal');
   add_meta_box('map_id','MAP入力欄','custom_map','page','normal');
   add_meta_box('access_shop_name_id','アクセスページ店名入力欄','access_shop_name','page','normal');
   add_meta_box('greet_subtitle_id','挨拶ページサブタイトル','greet_subtitle','page','normal');
-  add_meta_box('tel_number_id','電話番号入力欄','tel_number','page','normal');
   add_meta_box('reception_time_id','受付時間入力欄','reception_time','page','normal');
   add_meta_box('price_subtitle_id','料金ページサブタイトル','price_subtitle','page','normal');
   add_meta_box('menu_id','メニュータイトル・料金入力欄','menu_price','page','normal');
@@ -83,6 +125,11 @@ function tel_number(){
   echo '電話番号: <input type="text" name="tel-number" value="'.get_post_meta($post->ID,'tel-number',true).'">';
 }
 
+function address(){
+  global $post;
+  echo '住所: <input type="text" name="address" value="'.get_post_meta($post->ID,'address',true).'">';
+}
+
 function reception_time(){
   global $post;
   echo '受付時間: <input type="text" name="reception-time" value="'.get_post_meta($post->ID,'reception-time',true).'">';
@@ -99,8 +146,8 @@ function menu_price(){ //10個まで追加可能
   echo '<table>';
   for($i=1; $i<=10; $i++){
     echo '<tr>
-            <td>メニュータイトル: <input type="text" name="menu-title'.$i.'" value="'.get_post_meta($post->ID,"menu-title'.$i.'",true).'"></td>
-            <td>料金: <input type="text" name="menu-price'.$i.'" value="'.get_post_meta($post->ID,"menu-price'.$i'",true).'"></td>
+            <td>メニュータイトル: <input type="text" name="menu-title'.$i.'" value="'.get_post_meta($post->ID,'menu-title'.$i,true).'"></td>
+            <td>料金: <input type="text" name="menu-price'.$i.'" value="'.get_post_meta($post->ID,'menu-price'.$i,true).'"></td>
           </tr>';
     }
   echo '</table>';
@@ -113,11 +160,12 @@ function procedure_subtitle(){
 
 function procedure_detail(){ //10個まで追加可能
   global $post;
+  var_dump(get_post_meta($post->ID,"procedure-title1",true));
   echo '<table>';
   for($i=1; $i<=10; $i++){
     echo '<tr>
-            <td>手順タイトル: <input type="text" name="procedure-title'.$i.'" value="'.get_post_meta($post->ID,"procedure-title'.$i.'",true).'"></td>
-            <td>手順の内容: <textarea name="procedure-content'.$i.'" rows="5" cols="50">'.get_post_meta($post->ID,"procedure-content'.$i.'",true).'"</textarea></td>
+            <td>手順タイトル: <input type="text" name="procedure-title'.$i.'" value="'.get_post_meta($post->ID,'procedure-title'.$i,true).'"></td>
+            <td>手順の内容:<textarea name="procedure-content'.$i.'" rows="5" cols="50">'.get_post_meta($post->ID,'procedure-content'.$i,true).'</textarea></td>
           </tr>';
     }
   echo '</table>';
@@ -129,12 +177,12 @@ function question(){
   echo '<table>';
   for($m=1; $m<=5; $m++){
     echo '<tr>
-            <td>質問カテゴリー: <input type="text" name="question-category'.$m.'" value="'.get_post_meta($post->ID,"question-category'.$m.'",true).'"></td>';
+            <td>質問カテゴリー: <input type="text" name="question-category'.$m.'" value="'.get_post_meta($post->ID,'question-category'.$m,true).'"></td>';
             echo '<table>';
             for($n=1; $n<=10; $n++){
               echo '<tr>
-                      <td>質問タイトル: <input type="text" name="question-title'.$m.$n.'" value="'.get_post_meta($post->ID,"question-title'.$m.$n.'",true).'"></td>
-                      <td>質問内容: <textarea name="question-detail'.$m.$n.'" rows="5" cols="50">'.get_post_meta($post->ID,"question-detail'.$m.$n.'",true).'"</textarea></td>
+                      <td>質問タイトル: <input type="text" name="question-title'.$m.$n.'" value="'.get_post_meta($post->ID,'question-title'.$m.$n,true).'"></td>
+                      <td>質問内容: <textarea name="question-detail'.$m.$n.'" rows="5" cols="50">'.get_post_meta($post->ID,'question-detail'.$m.$n,true).'</textarea></td>
                     </tr>';
             }
             echo '</table>';
@@ -146,21 +194,22 @@ function question(){
 //カスタムフィールドから入力された情報をDBへ保存する関数 引数は固定ページのid
 function save_custom_postdata($post_id){
 
-    $img_top = '';
-    $top_recommend = '';
-    $top_merit = '';
-    $top_voice = '';
+    $img_top = ''; //トップバナー
+    $top_recommend = ''; //recommend文
+    $top_merit = ''; //merit文
+    $top_voice = ''; //voice文
+    $greet_subtitle = ''; //挨拶ページサブタイトル
+    $procedure_subtitle = ''; //手順ページサブタイトル
+    $procedure_title = ''; //それぞれの手順のタイトル
+    $procedure_content = ''; //それぞれの手順の詳細
     $map_data = '';
     $access_shop_name = '';
-    $greet_subtitle = '';
     $tel_number = '';
+    $address = '';
     $reception_time = '';
     $price_subtitle = '';
     $menu_title = '';
     $menu_price = '';
-    $procedure_subtitle = '';
-    $procedure_title = '';
-    $procedure_content = '';
     $question_category = '';
     $question_title = '';
     $question_detail = '';
@@ -239,6 +288,16 @@ function save_custom_postdata($post_id){
       update_post_meta($post_id, 'tel-number', $tel_number);
     }elseif($tel_number == ''){
       delete_post_meta($post_id, 'tel-number', get_post_meta($post_id, 'tel-number', true));
+    }
+
+    //電話番号
+    if(isset($_POST['address'])){
+      $address = $_POST['address'];
+    }
+    if($address != get_post_meta($post_id, 'address', true)){
+      update_post_meta($post_id, 'address', $address);
+    }elseif($address == ''){
+      delete_post_meta($post_id, 'address', get_post_meta($post_id, 'address', true));
     }
 
     //受付時間

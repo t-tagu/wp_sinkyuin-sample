@@ -28,3 +28,23 @@
   display: block;
   border-radius: 17.5px;
 }
+/*記事ページでのページネーションのデザイン*/
+.pagenation .single-page-list {
+  display:flex;
+  flex-flow: column;
+  justify-content:space-around;
+  position: relative;
+  overflow: hidden;
+}
+.pagenation .single-page-list .single-page-list-item {
+  width: max-content;
+  border: none;
+  margin: 0;
+  position: absolute;
+}
+.pagenation .single-page-list .next {
+  right: 0;
+}
+.pagenation .single-page-list .prev {
+  left: 0;
+}
