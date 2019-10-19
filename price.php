@@ -13,25 +13,43 @@ Template Name: 空想鍼灸院 〜施術内容・料金ページ〜
 
     <!-- メインコンテンツ -->
     <div id="main">
-      <h2 class="page-title">施術内容・料金</h2>
+      <h2 class="page-title"><?php echo get_the_title(); ?></h2>
       <section class="treatment-manner">
         <div class="section-content-wrapper site-width">
-          <h3>当院の施術内容</h3>
-          <p class="">診察に当たってはまず問診である程度、患者様に起こっていることの予測を立てます。<br>
-            それからいくつかの動作をとってもらい、それを観察し、
-            どの動作で痛みや不具合が出るのかを見極めます。<br><br>
-            それから患部を特定しましたら、その箇所の緊張を一時的に緩和してみます。<br>
-            そうしますと、もちろん一時的にですが、患者様の訴えておられる症状がたちどころに緩和します。<br><br>
-            あとはその患部に起こっている現象に対して処置を施していきます。<br>
-            当院では以上のような流れで治療を施していきます。</p>
-        </div>
+          <h3><?php echo get_post_meta($post->ID, 'price-subtitle', true);?></h3>
+          <?php if(have_posts()) : //WordPressループ お決まりパターン
+            while(have_posts()) : the_post(); //繰り返し処理 ?>
+            <!-- ワードプレスの関数を使って固定ページのidを出力、クラス属性を管理画面から追加できる-->
+              <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                <!--投稿した固定ページの本文を出力している-->
+                <?php the_content(); ?>
+              </div>
+            <?php endwhile; //繰り返し処理
+            else : //ここから記事が見つからなかった場合の処理 特になくても問題ない ?>
+              <div class="post">
+                <h2>記事はありません</h2>
+                <p>お探しの記事は見つかりませんでした。</p>
+              </div>
+          <?php endif; ?>
       </section>
       <section class="price">
         <div class="section-content-wrapper site-width">
-        <h3>施術メニュー・料金表</h3>
+        <h3>メニュー・料金表</h3>
           <div class="price-table-wrapper">
             <table class="price-table">
               <tr>
+                <th>内容</th>
+                <th>料金</th>
+              </tr>
+
+              <?php for($i=1; $i<=10; $i++){
+              if(!empty(get_post_meta($post->ID,'menu-title'.$i,true)) &&  !empty(get_post_meta($post->ID,'menu-price'.$i,true)) ) { ?>
+                  <tr>
+                    <td class="plan"><?php echo get_post_meta($post->ID, 'menu-title'.$i ,true);?></th>
+                    <td><?php echo get_post_meta($post->ID, 'menu-price'.$i ,true);?></th>
+                  </tr>
+              <?php }} ?>
+              <!--<tr>
                 <th>施術内容</th>
                 <th>料金</th>
               </tr>
@@ -54,7 +72,7 @@ Template Name: 空想鍼灸院 〜施術内容・料金ページ〜
               <tr>
                 <td class="plan">12回券(有効期限6ヶ月)</td>
                 <td>50,000円</td>
-              </tr>
+              </tr>-->
             </table>
           </div>
         </div>

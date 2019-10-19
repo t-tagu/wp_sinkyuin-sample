@@ -58,3 +58,6 @@
   border-right: 1px dashed #333333;
   z-index: 1;
 }
+.procedure-item:last-child .item_connector{
+    display: none;
+}

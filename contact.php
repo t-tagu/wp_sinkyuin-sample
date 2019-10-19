@@ -11,14 +11,14 @@ Template Name: 空想鍼灸院 〜お問い合わせページ〜
 
     <!-- メインコンテンツ -->
     <div id="main">
-      <h2 class="page-title">お問い合わせ</h2>
+      <h2 class="page-title"><?php echo get_the_title(); ?></h2>
       <section class="tel">
         <div class="section-content-wrapper site-width">
           <h3>お電話でのお問い合わせ</h3>
           <p class="consultation">ご予約・ご相談お気軽にご連絡ください。</p>
           <div class="tel-box">
-            <a href="tel"><i class="fas fa-phone-square-alt tel-icon"></i>0120-012-0120</a>
-            <p class="tel-time">受付時間 10:00〜18:00</p>
+            <a href="tel"><i class="fas fa-phone-square-alt tel-icon"></i><?php echo get_post_meta($post->ID, 'tel-number', true);?></a>
+            <p class="tel-time">受付時間 <?php echo get_post_meta($post->ID, 'reception-time', true);?></p>
           </div>
           <p class="hosoku">※ 施術中でお受けすることができない場合もございます。<br>
             その際はお手数ですが、少し時間をおかけ直しをお願いいたします</p>

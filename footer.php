@@ -7,5 +7,8 @@
     </div>
   </div>
 </footer>
+<?php if(is_page_template('faq.php')): ?>
+  <script src="<?php echo get_template_directory_uri(); ?>/js/faq.js"></script>
+<?php endif; ?>
 </body>
 </html>
