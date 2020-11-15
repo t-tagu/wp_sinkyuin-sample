@@ -21,6 +21,7 @@ HTML5<br>
 CSS3<br>
 JavaScript<br>
 PHP<br>
+jQuery<br>
 
 # 作成者
 
