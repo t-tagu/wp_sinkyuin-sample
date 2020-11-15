@@ -1,7 +1,5 @@
 $(function(){
 
-  console.log('jsファイル読み込み');
-
   if($('.page-sec').length % 2 === 0){
     $('.footer-container').css('border-top', '1px solid rgba(103,107,109,0.15)');
   }
