@@ -11,14 +11,14 @@ ini_set('error_log','php.log');
 
 //カスタムヘッダー画像の設置 これを書くと外観にヘッダーという項目が現れてカスタムヘッダーを設定できるようにな
 // $custom_header_defaults = array(
-//   'default-image' => get_bloginfo('template_url').'/images/headers/logo.png',
-//   'header-text' => false,
+//    'default-image' => get_bloginfo('template_url').'/images/headers/logo.png',
+//    'header-text' => false,
 // );
 //カスタムヘッダー機能を有効にする 第一引数はcustom-headerと入れる。第二引数は作成した変数をいれる
 //add_theme_support('custom-header',$custom_header_defaults);
 
 //カスタムメニューを使用するための設定
-//register_nav_menu('mainmenu', '鍼灸院メニュー'); //メニューの位置の管理から表示するメニューを指定
+register_nav_menu('mainmenu', '鍼灸院メニュー'); //メニューの位置の管理から表示するメニューを指定
 
 //サムネイル設定
 function twpp_setup_theme() {
@@ -160,7 +160,6 @@ function procedure_subtitle(){
 
 function procedure_detail(){ //10個まで追加可能
   global $post;
-  var_dump(get_post_meta($post->ID,"procedure-title1",true));
   echo '<table>';
   for($i=1; $i<=10; $i++){
     echo '<tr>
@@ -411,6 +410,8 @@ function save_custom_postdata($post_id){
   add_action('widgets_init', function(){register_widget('my_widgets_recommend');});
   add_action('widgets_init', function(){register_widget('my_widgets_merit');});
   add_action('widgets_init', function(){register_widget('my_widgets_voice');});
+  add_action('widgets_init', function(){register_widget('my_widgets_tel');});
+  add_action('widgets_init', function(){register_widget('my_widgets_address');});
 
   //ウィジェットエリアを作成する
   function my_widgets_area(){
@@ -432,6 +433,20 @@ function save_custom_postdata($post_id){
      register_sidebar(array(
          'name' => 'ボイスエリア',
          'id' => 'widget_voice',
+         'before_widget'=>'<div>', //管理画面のウィジェットエリアを囲むタグ
+         'after_widget'=>'</div>'
+     ));
+
+     register_sidebar(array(
+         'name' => 'テレフォンエリア',
+         'id' => 'widget_tel',
+         'before_widget'=>'<div>', //管理画面のウィジェットエリアを囲むタグ
+         'after_widget'=>'</div>'
+     ));
+
+     register_sidebar(array(
+         'name' => 'アドレスエリア',
+         'id' => 'widget_address',
          'before_widget'=>'<div>', //管理画面のウィジェットエリアを囲むタグ
          'after_widget'=>'</div>'
      ));
@@ -671,6 +686,108 @@ function save_custom_postdata($post_id){
             </div>
           </div>
         </section>
+  <?php
+      }
+    }
+  }
+
+  //ボイスウィジェット自体を作成する
+  class my_widgets_tel extends WP_Widget {
+
+    //初期化(管理画面で表示するウィジェットの名前を設定する) コンストラクタの作成
+    function my_widgets_tel(){
+      parent::WP_Widget(false, $name = 'テレフォンウィジェット'); //第二引数は管理面に表示するウィジェットの名前を指定
+    }
+
+    //ウィジェットの入力項目を作成する処理
+    function form($instance){ //メソッド名は必ずformにする 引数はワードプレスから入力された情報が入る
+      //esc_attrでサニタイズして変数へ格納 htmlタグを取り除く
+      $title = esc_attr($instance['title']);
+    ?>
+
+      <p>
+          <label for="<?php echo $this->get_field_id('title'); ?>">
+              <?php echo 'タイトル'; ?>
+          </label>
+          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+          name="<?php echo $this->get_field_name('title');?>" type="text" value="<?php echo $title; ?>"/>
+      </p>
+      <?php
+    }
+
+    //ウィジェットに入力された情報を保存する処理
+    function update($new_instance, $old_instance){ //引数は新しく入力された情報とDBに保存されている情報が渡ってくる
+      $instance = $old_instance;
+      $instance['title'] = strip_tags($new_instance['title']); //サニタイズ html、phpのタグを取り除く
+
+      return $instance;
+    }
+
+    //管理画面から入力されたウィジェットを画面に表示する処理
+    function widget($args, $instance){ //第一引数はウィジェットエリア自体の情報が入る(配列)、第二引数はDBへ保存された情報が渡ってくる
+      //配列を変数に展開 ただし今回はこの情報は使っていない
+      extract($args);
+
+      //ウィジェットから入力された情婦おを取得
+      $title = apply_filters('widget_title',$instance['title']); //widget_titleという関数で何か処理をして変数に格納したい場合はこうやって書く
+
+      //ウィジェットから入力された情報がある場合、以下のhtmlを生成する(今回はパネルのhtml)
+      if($title){
+  ?>
+        <span>
+          <?php echo $title; ?>
+        </span>
+  <?php
+      }
+    }
+  }
+
+  //ボイスウィジェット自体を作成する
+  class my_widgets_address extends WP_Widget {
+
+    //初期化(管理画面で表示するウィジェットの名前を設定する) コンストラクタの作成
+    function my_widgets_address(){
+      parent::WP_Widget(false, $name = 'アドレスウィジェット'); //第二引数は管理面に表示するウィジェットの名前を指定
+    }
+
+    //ウィジェットの入力項目を作成する処理
+    function form($instance){ //メソッド名は必ずformにする 引数はワードプレスから入力された情報が入る
+      //esc_attrでサニタイズして変数へ格納 htmlタグを取り除く
+      $title = esc_attr($instance['title']);
+    ?>
+
+      <p>
+          <label for="<?php echo $this->get_field_id('title'); ?>">
+              <?php echo 'タイトル'; ?>
+          </label>
+          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
+          name="<?php echo $this->get_field_name('title');?>" type="text" value="<?php echo $title; ?>"/>
+      </p>
+      <?php
+    }
+
+    //ウィジェットに入力された情報を保存する処理
+    function update($new_instance, $old_instance){ //引数は新しく入力された情報とDBに保存されている情報が渡ってくる
+      $instance = $old_instance;
+      $instance['title'] = strip_tags($new_instance['title']); //サニタイズ html、phpのタグを取り除く
+
+      return $instance;
+    }
+
+    //管理画面から入力されたウィジェットを画面に表示する処理
+    function widget($args, $instance){ //第一引数はウィジェットエリア自体の情報が入る(配列)、第二引数はDBへ保存された情報が渡ってくる
+      //配列を変数に展開 ただし今回はこの情報は使っていない
+      extract($args);
+
+      //ウィジェットから入力された情婦おを取得
+      $title = apply_filters('widget_title',$instance['title']); //widget_titleという関数で何か処理をして変数に格納したい場合はこうやって書く
+
+      //ウィジェットから入力された情報がある場合、以下のhtmlを生成する(今回はパネルのhtml)
+      if($title){
+  ?>
+        <span>
+          <?php echo $title; ?>
+        </span>
   <?php
       }
     }

@@ -49,30 +49,6 @@ Template Name: 空想鍼灸院 〜施術内容・料金ページ〜
                     <td><?php echo get_post_meta($post->ID, 'menu-price'.$i ,true);?></th>
                   </tr>
               <?php }} ?>
-              <!--<tr>
-                <th>施術内容</th>
-                <th>料金</th>
-              </tr>
-              <tr>
-                <td class="plan">初回施術料</td>
-                <td>7,000円</td>
-              </tr>
-              <tr>
-                <td class="plan">一般施術料</td>
-                <td>5,000円</td>
-              </tr>
-              <tr>
-                <td class="plan">通常施術回数券　6回券(有効期限3ヶ月)</td>
-                <td>27,000円</td>
-              </tr>
-              <tr>
-                <td class="plan">10回券(有効期限6ヶ月)</td>
-                <td>42,000円</td>
-              </tr>
-              <tr>
-                <td class="plan">12回券(有効期限6ヶ月)</td>
-                <td>50,000円</td>
-              </tr>-->
             </table>
           </div>
         </div>

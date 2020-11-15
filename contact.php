@@ -24,7 +24,7 @@ Template Name: 空想鍼灸院 〜お問い合わせページ〜
             その際はお手数ですが、少し時間をおかけ直しをお願いいたします</p>
         </div>
       </section>
-      <section class="email-form">
+      <!--<section class="email-form">
         <div class="section-content-wrapper site-width">
         <h3>お問い合わせフォーム</h3>
           <div class="contact-form-wrapper">
@@ -47,7 +47,8 @@ Template Name: 空想鍼灸院 〜お問い合わせページ〜
             </form>
           </div>
         </div>
-      </section>
+      </section>-->
+      <?php echo do_shortcode( '[contact-form-7 id="126" title="空想鍼灸院フォーム"]' ); ?>
     </div>
 
     <?php get_footer(); ?>
